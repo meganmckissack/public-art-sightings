@@ -8,7 +8,7 @@ const artData = [
     type: "sculpture",
     description: "mahogany geometric scupture",
     location: "Fire Station 16",
-    img: "src/components/img/spirolarc.jpeg"
+    img: "https://s3.amazonaws.com/react-tests/5d2f7b4b4433b24b730c910d/b5c25d60-6357-11ea-97fb-b5e85b1f67c4-2500.jpeg"
   }, 
   {
     title: "Silver Dawn",
@@ -16,7 +16,7 @@ const artData = [
     type: "sculpture",
     description: "biomorphic abstract sculpture",
     location: "Wallace Park",
-    img: "src/components/img/silver-dawn.jpeg"
+    img: "https://s3.amazonaws.com/react-tests/5d2f7b4b4433b24b730c910d/32357150-5c25-11ea-8a6c-29be62a72f33-2500.jpeg"
   }, 
   {
     title: "Pambiche",
@@ -24,7 +24,7 @@ const artData = [
     type: "mural",
     description: "a cultural depiction of Cuba",
     location: "Pambiche Restaurant",
-    img: "src/components/img/pambiche.jpeg"
+    img: "https://s3.amazonaws.com/react-tests/5d2f7b4b4433b24b730c910d/5af41970-5c2a-11ea-8a6c-29be62a72f33-2500.jpeg"
   }
 ]
 

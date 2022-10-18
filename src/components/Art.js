@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 function Art(props) {
   return ( 
     <React.Fragment>
+      <img src={props.img} width="10%" height="10%" alt={`{props.title} + {props.type}`} />
       <h3>{props.title}</h3>
       <p>{props.artist}</p>
       <p>{props.type}</p>
       <p>{props.description}</p>
-      <p>{props.location}</p>
-      <img src={props.img} alt="art" />
+      <p>{props.location}</p>  
     </React.Fragment>
   );
 }
