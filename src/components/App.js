@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from './Header';
-import ArtList from './ArtList';
+import ArtControl from './ArtControl';
 
 
 function App() {
   return (
     <React.Fragment>
       <Header />
-      <ArtList />
+      <ArtControl />
     </React.Fragment>
   );
 }
