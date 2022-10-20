@@ -11,8 +11,9 @@ function Art(props) {
         <p>{props.type}</p>
         <p>{props.description}</p>
         <p>{props.location}</p>  
-        <hr />
       </div>
+      <button onClick={() => props.whenArtIncreaseClick(props.id)}>Sightings +</button>
+      <hr />
     </React.Fragment>
   );
 }
@@ -25,7 +26,8 @@ Art.propTypes = {
   location: PropTypes.string,
   img: PropTypes.string,
   id: PropTypes.string,
-  whenArtClicked: PropTypes.func
+  whenArtClicked: PropTypes.func,
+  whenArtIncreaseClick: PropTypes.func
 }
 
 export default Art;

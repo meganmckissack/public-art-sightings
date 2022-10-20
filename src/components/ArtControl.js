@@ -13,7 +13,8 @@ class ArtControl extends React.Component {
       formVisible: false,
       mainArtList: [],
       selectedArt: null,
-      editing: false
+      editing: false,
+      sightings: 1
     };
   }
 
@@ -28,7 +29,7 @@ class ArtControl extends React.Component {
       this.setState({
         formVisible: false,
         selectedArt: null, 
-        editing: false
+        editing: false, 
       });
     } else {
       this.setState(prevState => ({
@@ -71,6 +72,16 @@ class ArtControl extends React.Component {
     });
   }
 
+  handleIncrementSightings = () => {
+    this.setState({ sightings: this.state.sightings + 1 });
+    console.log(this.state.sightings);
+  }
+
+  
+  handleDecreaseSightings = () => {
+    this.setState({ sightings: this.state.sightings - 1 });
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -88,7 +99,8 @@ class ArtControl extends React.Component {
         currentlyVisibleState = <NewArtForm onNewArtCreation={this.handleAddingNewArtToList} />;
         buttonText = "Return to Art List";
     } else {
-      currentlyVisibleState = <ArtList onArtSelection={this.handleChangingSelectedArt} artList={this.state.mainArtList} />;
+      currentlyVisibleState = <ArtList onIncrement={this.handleIncrementSightings} onArtSelection={this.handleChangingSelectedArt} artList={this.state.mainArtList} />;
+      
       buttonText = "Add Art";
     }
   

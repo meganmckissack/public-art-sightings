@@ -35,6 +35,7 @@ function ArtList(props) {
     <hr />
     {props.artList.map((art) => 
       <Art
+        whenArtIncreaseClick={props.onIncrement}
         whenArtClicked={ props.onArtSelection }
         title={art.title}
         artist={art.artist}
@@ -51,7 +52,8 @@ function ArtList(props) {
 
 ArtList.propTypes = {
   artList: PropTypes.array,
-  onArtSelection: PropTypes.func
+  onArtSelection: PropTypes.func,
+  onIncrement: PropTypes.func
 };
 
 export default ArtList;
