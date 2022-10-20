@@ -35,6 +35,7 @@ function ArtList(props) {
     <hr />
     {props.artList.map((art) => 
       <Art
+        whenArtClicked={ props.onArtSelection }
         title={art.title}
         artist={art.artist}
         type={art.type}

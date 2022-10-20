@@ -2,6 +2,7 @@ import React from "react";
 import NewArtForm from "./NewArtForm";
 import ArtList from "./ArtList";
 import ArtDetail from "./ArtDetail";
+import EditArtForm from "./EditArtForm";
 
 
 class ArtControl extends React.Component {
@@ -11,7 +12,8 @@ class ArtControl extends React.Component {
     this.state={
       formVisible: false,
       mainArtList: [],
-      selectedArt: null
+      selectedArt: null,
+      editing: false
     };
   }
 
@@ -36,7 +38,8 @@ class ArtControl extends React.Component {
 
   handleAddingNewArtToList = (newArt) => {
     const newMainArtList = this.state.mainArtList.concat(newArt);
-    this.setState({mainArtList: newMainArtList, formVisible: false});
+    this.setState({mainArtList: newMainArtList});
+    this.setState({formVisible: false});
   }
 
   handleChangingSelectedArt = (id) => {
@@ -44,22 +47,40 @@ class ArtControl extends React.Component {
     this.setState({selectedArt: selectedArt});
   }
 
+  handleDeletingArt = (id) => {
+    const newMainArtList = this.state.mainArtList.filter(art => art.id !==id);
+    this.setState({
+      mainArtList: newMainArtList,
+      selectedArt: null
+    })
+  }
+
+  handleEditClick = () => {
+    this.setState({editing: true});
+  }
+
   render() {
     let currentlyVisibleState = null;
     let buttonText = null;
 
-    if(this.state.selectedArt != null) {
-        currentlyVisibleState = <ArtDetail art = {this.state.selectedArt} />
-        buttonText="Return to Art List";
-      } else {
-      if (this.state.formVisible) {
-          currentlyVisibleState = <NewArtForm onNewArtCreation={this.handleAddingNewArtToList} />;
-          buttonText = "Return to Art List";
-      } else {
-        currentlyVisibleState = <ArtList onTicketSelection={this.handleChangingSelectedTicket} artList={this.state.mainArtList} />;
-        buttonText = "Add Art";
-      }
+    if(this.state.editing) {
+      currentlyVisibleState = <EditArtForm art = {this.state.selectedArt} />
+      buttonText="Return to Art List";
+    } else if (this.state.selectedArt != null) {
+      currentlyVisibleState = <ArtDetail 
+      art = {this.state.selectedArt} 
+      onClickingDelete = {this.handleDeletingArt} 
+      onClickingEdit = {this.handleEditClick} />
+      buttonText="Return to Art List";
+    } else if (this.state.formVisible) {
+        currentlyVisibleState = <NewArtForm onNewArtCreation={this.handleAddingNewArtToList} />;
+        buttonText = "Return to Art List";
+    } else {
+      currentlyVisibleState = <ArtList onTicketSelection={this.handleChangingSelectedTicket} artList={this.state.mainArtList} />;
+      buttonText = "Add Art";
     }
+  
+    
     return(
       <React.Fragment>
         {currentlyVisibleState}

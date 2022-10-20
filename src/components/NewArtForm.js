@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { v4 } from 'uuid';
+import ResuableForm from "./ReusableForm";
 
 
 function NewArtForm(props) {
@@ -22,32 +23,10 @@ function NewArtForm(props) {
 
   return (
     <React.Fragment>
-      <form onSubmit={handleNewArtFormSubmission}>
-        <input
-            type='text'
-            name='title'
-            placeholder='Title' />
-        <input
-            type='text'
-            name='artist'
-            placeholder='Artist' />
-        <input
-            type='text'
-            name='type'
-            placeholder='Type' />
-        <textarea
-            name='description'
-            placeholder='Describe Artwork' />
-        <input
-            type='text'
-            name='location'
-            placeholder='Location' />
-        <input
-            type='text'
-            name='img'
-            placeholder='Image link' />
-        <button type='submit'>Submit Art</button>
-      </form>
+      <ResuableForm
+        formSubmissionHandler={handleNewArtFormSubmission}
+        buttonText="Submit Art" 
+      />
     </React.Fragment>
   )
 }
