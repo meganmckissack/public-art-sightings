@@ -24,14 +24,15 @@ class ArtControl extends React.Component {
 // We want to increment or decrement a value. A prime example is a counter that we need to increment by one or some other value each time a button is clicked.
 // We want to update the state of a game.
   handleClick = () => {
-    if(this.state.selectedArt != null) {
+    if(this.state.selectedArt !== null) {
       this.setState({
         formVisible: false,
-        selectedArt: null
+        selectedArt: null, 
+        editing: false
       });
     } else {
       this.setState(prevState => ({
-        formVisible: !prevState.formVisible
+        formVisible: !prevState.formVisible,
       }));
     }
   }
@@ -48,7 +49,7 @@ class ArtControl extends React.Component {
   }
 
   handleDeletingArt = (id) => {
-    const newMainArtList = this.state.mainArtList.filter(art => art.id !==id);
+    const newMainArtList = this.state.mainArtList.filter(art => art.id !== id);
     this.setState({
       mainArtList: newMainArtList,
       selectedArt: null
@@ -57,6 +58,17 @@ class ArtControl extends React.Component {
 
   handleEditClick = () => {
     this.setState({editing: true});
+  }
+
+  handleEditingArtInList = (artToEdit) => {
+    const editedmainArtList = this.state.mainArtList
+      .filter(art => art.id !== this.state.selectedArt.id)
+      .concat(artToEdit);
+    this.setState({
+      mainArtList: editedmainArtList,
+      editing: false,
+      selectedArt: null
+    });
   }
 
   render() {
@@ -76,7 +88,7 @@ class ArtControl extends React.Component {
         currentlyVisibleState = <NewArtForm onNewArtCreation={this.handleAddingNewArtToList} />;
         buttonText = "Return to Art List";
     } else {
-      currentlyVisibleState = <ArtList onTicketSelection={this.handleChangingSelectedTicket} artList={this.state.mainArtList} />;
+      currentlyVisibleState = <ArtList onArtSelection={this.handleChangingSelectedArt} artList={this.state.mainArtList} />;
       buttonText = "Add Art";
     }
   

@@ -11,6 +11,7 @@ function Art(props) {
         <p>{props.type}</p>
         <p>{props.description}</p>
         <p>{props.location}</p>  
+        <hr />
       </div>
     </React.Fragment>
   );
